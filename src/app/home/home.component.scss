@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+
+    h1 {
+        color: #f0eef5;
+        text-align: center;
+        margin-top: 3rem;
+    }
+
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+}
