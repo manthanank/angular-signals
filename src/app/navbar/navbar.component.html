@@ -1,5 +1,5 @@
 <nav>
-    <a routerLink="/home" class="link" routerLinkActive="active">Home</a>
+    <a routerLink="/home" class="link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
     <a routerLink="/with-signal" class="link" routerLinkActive="active">With Signal Example</a>
     <a routerLink="/without-signal" class="link" routerLinkActive="active">Without Signal Example</a>
 </nav>

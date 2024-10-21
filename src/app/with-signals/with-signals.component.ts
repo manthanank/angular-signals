@@ -1,10 +1,9 @@
-import { NgFor } from '@angular/common';
 import { Component, computed, effect, signal } from '@angular/core';
 
 @Component({
   selector: 'app-with-signals',
   standalone: true,
-  imports: [NgFor],
+  imports: [],
   templateUrl: './with-signals.component.html',
   styleUrl: './with-signals.component.scss',
 })
