@@ -6,6 +6,6 @@ import { WithoutSignalsRoutingModule } from './without-signals-routing.module';
 
 @NgModule({
   declarations: [WithoutSignalsComponent],
-  imports: [CommonModule, WithoutSignalsRoutingModule]
+  imports: [CommonModule, WithoutSignalsRoutingModule],
 })
-export class WithoutSignalsModule { }
+export class WithoutSignalsModule {}

@@ -5,6 +5,6 @@ import { WithSignalsRoutingModule } from './with-signals-routing.module';
 
 @NgModule({
   declarations: [WithSignalsComponent],
-  imports: [CommonModule, WithSignalsRoutingModule]
+  imports: [CommonModule, WithSignalsRoutingModule],
 })
-export class WithSignalsModule { }
+export class WithSignalsModule {}

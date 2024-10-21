@@ -3,7 +3,7 @@ import { Component, computed, effect, signal } from '@angular/core';
 @Component({
   selector: 'app-with-signals',
   templateUrl: './with-signals.component.html',
-  styleUrl: './with-signals.component.scss'
+  styleUrl: './with-signals.component.scss',
 })
 export class WithSignalsComponent {
   actions = signal<string[]>([]);
