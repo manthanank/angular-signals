@@ -446,6 +446,8 @@ Demo: [Angular Signals](https://vocal-valkyrie-2b9d38.netlify.app)
 Project Structure:
 
 ```text
+├── public/
+│   |── favicon.ico
 ├── src/
 │   ├── app/
 │   │   ├── home/
@@ -498,11 +500,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'angular-signals';
-}
+export class AppComponent {}
 ```
 
 In `app.component.html`:
@@ -544,42 +544,52 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
-  { path: 'with-signal', loadChildren: () => import('./with-signals/with-signals.module').then(m => m.WithSignalsModule) },
-  { path: 'without-signal', loadChildren: () => import('./without-signals/without-signals.module').then(m => m.WithoutSignalsModule) },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+  },
+  {
+    path: 'with-signal',
+    loadChildren: () =>
+      import('./with-signals/with-signals.module').then(
+        (m) => m.WithSignalsModule
+      ),
+  },
+  {
+    path: 'without-signal',
+    loadChildren: () =>
+      import('./without-signals/without-signals.module').then(
+        (m) => m.WithoutSignalsModule
+      ),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 ```
 
 In `navbar.component.ts`:
 
 ```typescript
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  standalone: true,
-  imports: [RouterLink],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent {
-
-}
+export class NavbarComponent {}
 ```
 
 In `navbar.component.html`:
 
 ```html
 <nav>
-    <a routerLink="/home" class="link" routerLinkActive="active">Home</a>
+    <a routerLink="/home" class="link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
     <a routerLink="/with-signal" class="link" routerLinkActive="active">With Signal Example</a>
     <a routerLink="/without-signal" class="link" routerLinkActive="active">Without Signal Example</a>
 </nav>
@@ -613,21 +623,6 @@ nav {
 }
 ```
 
-In `navbar.component.ts`:
-
-```typescript
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
-})
-export class NavbarComponent {
-
-}
-```
-
 In `home-routing.module.ts`:
 
 ```typescript
@@ -635,15 +630,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 
-const routes: Routes = [
-  { path: '', component: HomeComponent },
-];
+const routes: Routes = [{ path: '', component: HomeComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class HomeRoutingModule { }
+export class HomeRoutingModule {}
 ```
 
 In `home.component.html`:
@@ -651,10 +644,21 @@ In `home.component.html`:
 ```html
 <div class="container">
     <h1>
-        Angular Signals
+        Welcome to the Angular Signals Examples!
     </h1>
-
-    <img src="favicon.ico" alt="Angular Logo">
+    <p>
+        This is a collection of examples that demonstrate how to use Angular Signals.
+    </p>
+    <p>
+        To get started, click on one of the examples in the navigation bar.
+    </p>
+    <p>
+        If you have any questions or feedback, please feel free to reach out to me on Twitter at <a
+            href="https://twitter.com/manthan_ank">&#64;manthan_ank</a>.
+    </p>
+    <p>
+        Enjoy!
+    </p>
 </div>
 ```
 
@@ -671,12 +675,21 @@ In `home.component.scss`:
     h1 {
         color: #f0eef5;
         text-align: center;
-        margin-top: 3rem;
+    }
+
+    p {
+        color: #f0eef5;
+        text-align: center;
     }
 
     img {
         display: block;
         margin: 0 auto;
+    }
+
+    a {
+        color: #f0eef5;
+        text-decoration: underline;
     }
 }
 ```
@@ -689,11 +702,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
-export class HomeComponent {
-
-}
+export class HomeComponent {}
 ```
 
 In `home.module.ts`:
@@ -718,15 +729,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WithSignalsComponent } from './with-signals.component';
 
-const routes: Routes = [
-  { path: '', component: WithSignalsComponent },
-];
+const routes: Routes = [{ path: '', component: WithSignalsComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class WithSignalsRoutingModule { }
+export class WithSignalsRoutingModule {}
 ```
 
 In `with-signals.module.ts`:
@@ -739,21 +748,18 @@ import { WithSignalsRoutingModule } from './with-signals-routing.module';
 
 @NgModule({
   declarations: [WithSignalsComponent],
-  imports: [CommonModule, WithSignalsRoutingModule]
+  imports: [CommonModule, WithSignalsRoutingModule],
 })
-export class WithSignalsModule { }
+export class WithSignalsModule {}
 ```
 
 In `with-signals.component.ts`:
 
 ```typescript
-import { NgFor } from '@angular/common';
 import { Component, computed, effect, signal } from '@angular/core';
 
 @Component({
   selector: 'app-with-signals',
-  standalone: true,
-  imports: [NgFor],
   templateUrl: './with-signals.component.html',
   styleUrl: './with-signals.component.scss',
 })
@@ -795,7 +801,9 @@ In `with-signals.component.html`:
 
 <h2>Action Log</h2>
 <ol id="log">
-  <li *ngFor="let action of actions()">{{ action }}</li>
+  @for (action of actions(); track $index) {
+  <li>{{ action }}</li>
+  }
 </ol>
 ```
 
@@ -828,23 +836,20 @@ import { WithoutSignalsRoutingModule } from './without-signals-routing.module';
 
 @NgModule({
   declarations: [WithoutSignalsComponent],
-  imports: [CommonModule, WithoutSignalsRoutingModule]
+  imports: [CommonModule, WithoutSignalsRoutingModule],
 })
-export class WithoutSignalsModule { }
+export class WithoutSignalsModule {}
 ```
 
 In `without-signals.component.ts`:
 
 ```typescript
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-without-signals',
-  standalone: true,
-  imports: [NgFor],
   templateUrl: './without-signals.component.html',
-  styleUrl: './without-signals.component.scss'
+  styleUrl: './without-signals.component.scss',
 })
 export class WithoutSignalsComponent {
   actions: string[] = [];
@@ -868,16 +873,18 @@ In `without-signals.component.html`:
 <h1>Default (Automatic Change Detection)</h1>
 
 <div id="counter">
-    <p id="counter-output">Counter: {{ counter }}</p>
-    <div id="counter-btns">
-        <button (click)="decrement()">Decrement</button>
-        <button (click)="increment()">Increment</button>
-    </div>
+  <p id="counter-output">Counter: {{ counter }}</p>
+  <div id="counter-btns">
+    <button (click)="decrement()">Decrement</button>
+    <button (click)="increment()">Increment</button>
+  </div>
 </div>
 
 <h2>Action Log</h2>
 <ol id="log">
-    <li *ngFor="let action of actions">{{ action }}</li>
+  @for (action of actions; track $index) {
+  <li>{{ action }}</li>
+  }
 </ol>
 ```
 
@@ -885,66 +892,66 @@ In `styles.scss`:
 
 ```scss
 * {
-    box-sizing: border-box;
-  }
-  
-  html {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  }
-  
-  body {
-    margin: 0;
-    background-color: #131216;
-    color: #f0eef5;
-  }
-  
-  h1,
-  h2 {
-    text-align: center;
-  }
-  
-  #counter {
-    margin: 3rem auto;
-    max-width: 40rem;
-    text-align: center;
-  }
-  
-  #counter-output {
-    font-size: 2rem;
-    padding: 0.5rem 1.5rem;
-    color: #a292d0;
-  }
-  
-  #counter-btns {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-  }
-  
-  button {
-    padding: 0.5rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    background-color: #a688ff;
-    color: #070312;
-    font-size: 1.2rem;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #8e8eff;
-  }
-  
-  #log {
-    text-align: center;
-    list-style: none;
-    margin: 3rem 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+  box-sizing: border-box;
+}
+
+html {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #131216;
+  color: #f0eef5;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+#counter {
+  margin: 3rem auto;
+  max-width: 40rem;
+  text-align: center;
+}
+
+#counter-output {
+  font-size: 2rem;
+  padding: 0.5rem 1.5rem;
+  color: #a292d0;
+}
+
+#counter-btns {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+button {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #a688ff;
+  color: #070312;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #8e8eff;
+}
+
+#log {
+  text-align: center;
+  list-style: none;
+  margin: 3rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 ```
 
 ## Conclusion
